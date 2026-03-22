@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Nutikas Restorani Reserveerimissüsteem</title>
+	<link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+<header class="top">
+	<h1>Nutikas Restorani Reserveerimissüsteem</h1>
+	<p class="lead">Vali kuupäev, kellaaeg ja seltskond, seejärel kuvatakse soovitus saaliplaanil.</p>
+</header>
+
+<main class="layout">
+	<section class="panel" aria-label="Filtrid">
+		<h2>Otsing</h2>
+		<form id="search-form" class="form">
+			<div class="calendar-section">
+				<span class="field-label">Kuupäev</span>
+				<div class="cal-nav">
+					<button type="button" class="btn cal-btn" id="cal-prev" aria-label="Eelmine kuu">‹</button>
+					<span id="cal-month-label" class="cal-month-label"></span>
+					<button type="button" class="btn cal-btn" id="cal-next" aria-label="Järgmine kuu">›</button>
+				</div>
+				<div class="cal-weekdays" aria-hidden="true">
+					<span>E</span><span>T</span><span>K</span><span>N</span><span>R</span><span>L</span><span>P</span>
+				</div>
+				<div id="cal-grid" class="cal-grid" role="grid" aria-label="Kalender"></div>
+				<div class="time-picker-wrap">
+					<span class="field-label">Kellaaeg</span>
+					<div class="time-picker">
+						<div class="time-unit">
+							<button type="button" class="btn time-arrow" id="hour-up" aria-label="Suurenda tundi">▲</button>
+							<span class="time-val" id="hour-display">18</span>
+							<button type="button" class="btn time-arrow" id="hour-down" aria-label="Vähenda tundi">▼</button>
+						</div>
+						<span class="time-colon">:</span>
+						<div class="time-unit">
+							<button type="button" class="btn time-arrow" id="min-up" aria-label="Suurenda minuteid">▲</button>
+							<span class="time-val" id="min-display">00</span>
+							<button type="button" class="btn time-arrow" id="min-down" aria-label="Vähenda minuteid">▼</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<label>Inimeste arv
+				<select id="party" required>
+					<option value="1">1</option>
+					<option value="2" selected>2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select>
+			</label>
+			<label>Tsoon
+				<select id="zone">
+					<option value="">Kõik tsoonid</option>
+					<option value="TERRACE">Terrass</option>
+					<option value="INDOOR">Sisesaal</option>
+					<option value="PRIVATE_ROOM">Privaatruum</option>
+				</select>
+			</label>
+			<fieldset class="prefs">
+				<legend>Eelistused</legend>
+				<label><input type="checkbox" id="wPrivacy"/> Vaikne nurk / privaatsus</label>
+				<label><input type="checkbox" id="wWindow"/> Akna all</label>
+				<label><input type="checkbox" id="wKids"/> Laste mängunurga lähedal</label>
+				<label><input type="checkbox" id="wAcc"/> Ligipääsetavus</label>
+			</fieldset>
+			<button type="submit" class="btn primary">Soovita lauda</button>
+		</form>
+
+		<section id="meal-suggestion" class="meal-box" hidden>
+			<h3>Päevasoovitus</h3>
+			<div class="meal-body">
+				<img id="meal-img" class="meal-img" alt="" width="120" height="120" loading="lazy"/>
+				<p id="meal-name" class="meal-name"></p>
+			</div>
+			<button type="button" class="btn" id="meal-refresh">Uus juhuslik roog</button>
+		</section>
+
+		<h2>Broneeri</h2>
+		<form id="book-form" class="form">
+			<label>Valitud laud
+				<input type="text" id="picked-table" readonly placeholder="Klõpsa plaanil või kasuta soovitust"/>
+			</label>
+			<label>Külalise nimi
+				<input type="text" id="guest" maxlength="128" placeholder="Nt Mari" required/>
+			</label>
+			<button type="submit" class="btn" id="book-btn" disabled>Kinnita broneering</button>
+		</form>
+		<p id="msg" class="msg" role="status"></p>
+	</section>
+
+	<section class="floor-wrap" aria-label="Saaliplaan">
+		<div class="legend">
+			<span><span class="swatch free"></span> vaba</span>
+			<span><span class="swatch busy"></span> hõivatud</span>
+			<span><span class="swatch rec"></span> soovitatud</span>
+			<span><span class="swatch pick"></span> valitud</span>
+		</div>
+		<svg id="floor" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+	</section>
+</main>
+
+<footer class="foot">
+	<small>Demo: Spring Boot + H2 + TheMealDB. Broneeringu kestus 2 h (keskmine külastus).</small>
+</footer>
+<script src="/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+:root {
+	--bg: #0f1419;
+	--panel: #1a222d;
+	--text: #e8eef5;
+	--muted: #9aa7b8;
+	--accent: #3d9cf0;
+	--ok: #3ecf8e;
+	--busy: #c45c5c;
+	--rec: #e6c84a;
+	--pick: #9b7bff;
+	--border: #2a3544;
+	font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	line-height: 1.45;
+}
+
+.top {
+	padding: 1.5rem 1.5rem 0.5rem;
+	border-bottom: 1px solid var(--border);
+}
+
+.top h1 {
+	margin: 0 0 0.35rem;
+	font-weight: 600;
+	font-size: 1.5rem;
+}
+
+.lead {
+	margin: 0;
+	color: var(--muted);
+	max-width: 52rem;
+}
+
+.layout {
+	display: grid;
+	grid-template-columns: minmax(300px, 400px) 1fr;
+	gap: 1rem;
+	padding: 1rem;
+	align-items: start;
+}
+
+@media (max-width: 900px) {
+	.layout {
+		grid-template-columns: 1fr;
+	}
+}
+
+.panel {
+	background: var(--panel);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 1rem 1.1rem;
+}
+
+.panel h2 {
+	margin: 0 0 0.75rem;
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--muted);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.65rem;
+	margin-bottom: 1.25rem;
+}
+
+.form label, .prefs label {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	font-size: 0.9rem;
+	color: var(--muted);
+}
+
+input, select {
+	padding: 0.45rem 0.5rem;
+	border-radius: 8px;
+	border: 1px solid var(--border);
+	background: #121820;
+	color: var(--text);
+}
+
+.prefs {
+	border: 1px dashed var(--border);
+	border-radius: 10px;
+	padding: 0.5rem 0.75rem;
+	margin: 0;
+}
+
+.prefs legend {
+	padding: 0 0.35rem;
+	color: var(--muted);
+	font-size: 0.85rem;
+}
+
+.prefs label {
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.btn {
+	padding: 0.55rem 0.9rem;
+	border-radius: 10px;
+	border: 1px solid var(--border);
+	background: #222b36;
+	color: var(--text);
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.btn:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+
+.btn.primary {
+	background: linear-gradient(135deg, #2a6bb5, var(--accent));
+	border-color: #3578c9;
+}
+
+.floor-wrap {
+	background: var(--panel);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 0.75rem;
+}
+
+.legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem 1rem;
+	margin-bottom: 0.5rem;
+	font-size: 0.85rem;
+	color: var(--muted);
+}
+
+.swatch {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border-radius: 3px;
+	vertical-align: -2px;
+	margin-right: 0.25rem;
+	border: 1px solid #0003;
+}
+
+.swatch.free {
+	background: #2a3f4d;
+}
+
+.swatch.busy {
+	background: var(--busy);
+}
+
+.swatch.rec {
+	background: var(--rec);
+}
+
+.swatch.pick {
+	background: var(--pick);
+}
+
+#floor {
+	width: 100%;
+	height: auto;
+	display: block;
+	background: #18202a;
+	border-radius: 10px;
+}
+
+/* Tsoonide taustvärvid */
+.zone-bg { pointer-events: none; }
+.zone-bg-terrace { fill: #1c2e20; }
+.zone-bg-private { fill: #201828; }
+.zone-bg-indoor  { fill: #1a2430; }
+
+.zone-label {
+	fill: #ffffff44;
+	font-size: 2.8px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	pointer-events: none;
+}
+
+/* Terrassi äärepiir (katkendlik) */
+.terrace-border {
+	stroke: #4a9a5a;
+	stroke-width: 0.7;
+	stroke-dasharray: 2.5,1;
+	pointer-events: none;
+}
+
+/* Seinad tsoonide vahel */
+.zone-wall {
+	stroke: #5a6a7a;
+	stroke-width: 1.4;
+	pointer-events: none;
+}
+.zone-divider {
+	stroke: #5a6a7a;
+	stroke-width: 0.6;
+	stroke-dasharray: 1.5,1;
+	pointer-events: none;
+}
+
+/* Aknad */
+.window {
+	fill: #a0c8e0;
+	opacity: 0.55;
+	pointer-events: none;
+}
+
+/* Laste mängunurk */
+.kids-area {
+	fill: #1d2a18;
+	pointer-events: none;
+}
+.kids-border {
+	stroke: #5ab840;
+	stroke-width: 0.65;
+	stroke-dasharray: 1.8,0.8;
+	pointer-events: none;
+}
+.kids-icon {
+	fill: #6cd455;
+	font-size: 5px;
+	pointer-events: none;
+}
+.kids-label {
+	fill: #6cd455;
+	font-size: 2.7px;
+	font-weight: 600;
+	pointer-events: none;
+}
+
+/* Lauad */
+.table-group {
+	cursor: pointer;
+}
+
+.table-shape {
+	stroke: #0a0e12;
+	stroke-width: 0.35;
+	transition: filter 0.15s ease;
+}
+
+.table-group:hover .table-shape {
+	filter: brightness(1.15);
+}
+
+.table-shape.state-free { fill: #2d4a5c; }
+.table-shape.state-busy { fill: #7a3030; }
+.table-shape.state-rec  { fill: #5c6a2d; stroke: var(--rec); stroke-width: 1.1; }
+.table-shape.state-pick { fill: #4a3d7a; stroke: var(--pick); stroke-width: 1.1; }
+
+/* Toolid laua ümber */
+.chair {
+	fill: #3a5060;
+	stroke: #0a0e12;
+	stroke-width: 0.15;
+	pointer-events: none;
+}
+
+.table-cap {
+	fill: #e8eef5;
+	font-size: 3.2px;
+	pointer-events: none;
+	font-weight: 700;
+}
+
+.table-code {
+	fill: #cfe0f5cc;
+	font-size: 2.6px;
+	pointer-events: none;
+}
+
+.msg {
+	min-height: 1.25rem;
+	color: var(--ok);
+	font-size: 0.9rem;
+}
+
+.msg.err {
+	color: #ff8a8a;
+}
+
+.field-label {
+	display: block;
+	font-size: 0.9rem;
+	color: var(--muted);
+	margin-bottom: 0.35rem;
+}
+
+.calendar-section {
+	margin-bottom: 0.5rem;
+}
+
+.cal-nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	margin-bottom: 0.4rem;
+}
+
+.cal-month-label {
+	flex: 1;
+	text-align: center;
+	font-weight: 600;
+	color: var(--text);
+	font-size: 0.95rem;
+}
+
+.cal-btn {
+	padding: 0.35rem 0.65rem;
+	min-width: 2.25rem;
+}
+
+.cal-weekdays {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 2px;
+	margin-bottom: 2px;
+	font-size: 0.7rem;
+	color: var(--muted);
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.cal-grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 3px;
+}
+
+.cal-day {
+	aspect-ratio: 1;
+	max-height: 2.35rem;
+	border-radius: 8px;
+	border: 1px solid var(--border);
+	background: #121820;
+	color: var(--text);
+	font-size: 0.85rem;
+	cursor: pointer;
+	padding: 0;
+	transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.cal-day:hover:not(:disabled) {
+	background: #1a2a38;
+	border-color: var(--accent);
+}
+
+.cal-day:disabled {
+	opacity: 0.45;
+	cursor: default;
+}
+
+.cal-day.other-month {
+	opacity: 0.35;
+}
+
+.cal-day.today {
+	border-color: #5a7a9a;
+}
+
+.cal-day.selected {
+	background: linear-gradient(135deg, #2a6bb5, var(--accent));
+	border-color: #3578c9;
+	color: #fff;
+	font-weight: 700;
+}
+
+.time-picker-wrap {
+	margin-top: 0.65rem;
+}
+
+.time-picker {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	background: #121820;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	padding: 0.35rem 0.7rem;
+	margin-top: 0.3rem;
+}
+
+.time-unit {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.1rem;
+}
+
+.time-val {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--text);
+	min-width: 2ch;
+	text-align: center;
+	line-height: 1.1;
+	font-variant-numeric: tabular-nums;
+}
+
+.time-colon {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--muted);
+	align-self: center;
+	padding-bottom: 0.15rem;
+}
+
+.time-arrow {
+	padding: 0.05rem 0.5rem;
+	font-size: 0.65rem;
+	line-height: 1;
+	border-radius: 5px;
+	background: #1e2a38;
+	border-color: var(--border);
+	color: var(--muted);
+	min-width: 0;
+}
+
+.time-arrow:hover {
+	background: #2a3d54;
+	color: var(--text);
+}
+
+.meal-box {
+	margin-top: 1rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--border);
+}
+
+.meal-box h3 {
+	margin: 0 0 0.25rem;
+	font-size: 0.95rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--muted);
+}
+
+.meal-body {
+	display: flex;
+	gap: 0.75rem;
+	align-items: flex-start;
+	margin-bottom: 0.5rem;
+}
+
+.meal-img {
+	border-radius: 10px;
+	border: 1px solid var(--border);
+	object-fit: cover;
+	background: #0a0e12;
+	flex-shrink: 0;
+}
+
+.meal-name {
+	margin: 0 0 0.35rem;
+	font-weight: 600;
+	font-size: 0.95rem;
+	line-height: 1.3;
+}
+
+#meal-refresh {
+	margin-top: 0.35rem;
+}
+
+.foot {
+	padding: 1rem 1.5rem 2rem;
+	color: var(--muted);
+	font-size: 0.85rem;
+}
